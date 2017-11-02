@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ww-common/ww-common.iml" filepath="$PROJECT_DIR$/ww-common/ww-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-manager/ww-manager.iml" filepath="$PROJECT_DIR$/ww-manager/ww-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-manager/ww-manager-dao/ww-manager-dao.iml" filepath="$PROJECT_DIR$/ww-manager/ww-manager-dao/ww-manager-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-manager/ww-manager-interface/ww-manager-interface.iml" filepath="$PROJECT_DIR$/ww-manager/ww-manager-interface/ww-manager-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-manager/ww-manager-pojo/ww-manager-pojo.iml" filepath="$PROJECT_DIR$/ww-manager/ww-manager-pojo/ww-manager-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-manager/ww-manager-service/ww-manager-service.iml" filepath="$PROJECT_DIR$/ww-manager/ww-manager-service/ww-manager-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-manager/ww-manager-web/ww-manager-web.iml" filepath="$PROJECT_DIR$/ww-manager/ww-manager-web/ww-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-parent/ww-parent.iml" filepath="$PROJECT_DIR$/ww-parent/ww-parent.iml" />
+    </modules>
+  </component>
+</project>
