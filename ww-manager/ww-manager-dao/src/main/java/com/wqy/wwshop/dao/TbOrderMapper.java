@@ -1,7 +1,7 @@
 package com.wqy.wwshop.dao;
 
-import com.dhc.ddshop.pojo.po.TbOrder;
-import com.dhc.ddshop.pojo.po.TbOrderExample;
+import com.wqy.wwshop.pojo.po.TbOrder;
+import com.wqy.wwshop.pojo.po.TbOrderExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
