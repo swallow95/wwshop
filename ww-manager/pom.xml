@@ -32,6 +32,8 @@
             </dependency>
 
 
+
+
             <!--4: Spring相关 -->
             <!--Spring核心依赖 -->
             <dependency>
@@ -54,7 +56,6 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-tx</artifactId>
-                <version>${spring.version}</version>
             </dependency>
             <!--Spring WEB层的依赖 -->
             <dependency>
@@ -80,8 +81,12 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
             </dependency>
-        </dependencies>
 
+
+
+
+
+        </dependencies>
 
 
 
