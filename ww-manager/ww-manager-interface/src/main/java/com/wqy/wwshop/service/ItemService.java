@@ -3,6 +3,7 @@ package com.wqy.wwshop.service;
 import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.pojo.po.TbItem;
+import com.wqy.wwshop.pojo.vo.TbItemCustom;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface ItemService {
 
    // List<TbItem> listItem();
     //分页
-    Result<TbItem> listItemsByPage(Page page);
+   Result<TbItemCustom> listItemsByPage(Page page);
 }

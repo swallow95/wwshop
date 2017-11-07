@@ -3,6 +3,7 @@ package com.wqy.wwshop.web;
 import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.pojo.po.TbItem;
+import com.wqy.wwshop.pojo.vo.TbItemCustom;
 import com.wqy.wwshop.service.ItemService;
 
 import org.slf4j.Logger;
@@ -48,18 +49,17 @@ public class ItemAction {
         }
         return list;
     }*/
-    @RequestMapping("/items")
-    @ResponseBody
-   public Result<TbItem> listItemsByPage(Page page){
-        Result<TbItem> list=null;
-        try {
-            list=itemService.listItemsByPage(page);
-        }catch (Exception e) {
-            logger.error(e.getLocalizedMessage(),e);
-            e.printStackTrace();
-        }
-        return list;
-
-    }
+   @ResponseBody
+   @RequestMapping("/items")
+   public Result<TbItemCustom> listItemsByPage(Page page) {
+       Result<TbItemCustom> list = null;
+       try {
+           list = itemService.listItemsByPage(page);
+       } catch (Exception e) {
+           logger.error(e.getMessage(), e);
+           e.printStackTrace();
+       }
+       return list;
+   }
 
 }

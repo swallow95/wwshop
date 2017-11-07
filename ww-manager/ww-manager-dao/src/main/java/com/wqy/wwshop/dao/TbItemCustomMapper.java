@@ -2,6 +2,7 @@ package com.wqy.wwshop.dao;
 
 import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.pojo.po.TbItem;
+import com.wqy.wwshop.pojo.vo.TbItemCustom;
 
 import java.util.List;
 
@@ -10,6 +11,6 @@ public interface TbItemCustomMapper {
     //查询商品表中所有记录的数量
     int countItems();
     //查询指定页码显示记录的集合
-    List<TbItem> listItemByPage(Page page);
+    List<TbItemCustom> listItemByPage(Page page);
 
 }
