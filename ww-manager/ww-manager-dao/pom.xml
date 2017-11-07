@@ -18,6 +18,7 @@
         </dependency>
         <!--引入mybatis  mysql  sring和junit（相关包放到ww-manager）-->
         <!-- mybatis -->
+        <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -37,9 +38,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
-
     </dependencies>
-
 
     <build>
         <resources>
@@ -53,5 +52,4 @@
             </resource>
         </resources>
     </build>
-
 </project>
