@@ -54,7 +54,7 @@
 <script src="js/common.js"></script>
 <script>
     $(function () {
-       
+
         var $tree=$('#menu.easyui-tree');
         //将当前的树打印到控制台上
         //console.log($tree);

@@ -1,5 +1,7 @@
 package com.wqy.wwshop.web;
 
+import com.wqy.wwshop.common.dto.Page;
+import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.pojo.po.TbItem;
 import com.wqy.wwshop.service.ItemService;
 
@@ -34,7 +36,7 @@ public class ItemAction {
         System.out.println(tbItem);
         return tbItem;
     }
-    @ResponseBody
+   /* @ResponseBody
     @RequestMapping("/items")
     public List<TbItem> listItem(){
         List<TbItem> list=null;
@@ -45,7 +47,19 @@ public class ItemAction {
             e.printStackTrace();
         }
         return list;
-    }
+    }*/
+    @RequestMapping("/items")
+    @ResponseBody
+   public Result<TbItem> listItemsByPage(Page page){
+        Result<TbItem> list=null;
+        try {
+            list=itemService.listItemsByPage(page);
+        }catch (Exception e) {
+            logger.error(e.getLocalizedMessage(),e);
+            e.printStackTrace();
+        }
+        return list;
 
+    }
 
 }
