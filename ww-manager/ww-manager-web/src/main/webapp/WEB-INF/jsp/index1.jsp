@@ -54,7 +54,7 @@
 <script src="js/common.js"></script>
 <script>
     $(function () {
-        //约定大于配置，jquery对象前面加上$，如果是dom对象不需要加$
+       
         var $tree=$('#menu.easyui-tree');
         //将当前的树打印到控制台上
         //console.log($tree);
