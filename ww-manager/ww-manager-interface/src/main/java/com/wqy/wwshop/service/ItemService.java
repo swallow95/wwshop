@@ -14,4 +14,12 @@ public interface ItemService {
    // List<TbItem> listItem();
     //分页
    Result<TbItemCustom> listItemsByPage(Page page);
+
+
+    //删除
+    int updateBatch(List<Long> ids);
+    //上架
+    int updateBatchUp(List<Long> ids);
+    //下架
+    int updateBatchDown(List<Long> ids);
 }

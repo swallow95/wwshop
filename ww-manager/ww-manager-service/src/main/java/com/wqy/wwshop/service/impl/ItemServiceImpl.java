@@ -5,6 +5,7 @@ import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.dao.TbItemCustomMapper;
 import com.wqy.wwshop.dao.TbItemMapper;
 import com.wqy.wwshop.pojo.po.TbItem;
+import com.wqy.wwshop.pojo.po.TbItemExample;
 import com.wqy.wwshop.pojo.vo.TbItemCustom;
 import com.wqy.wwshop.service.ItemService;
 import org.slf4j.Logger;
@@ -48,6 +49,7 @@ public class ItemServiceImpl implements ItemService {
         }
         return result;
     }*/
+   //分页
    @Override
    public Result<TbItemCustom> listItemsByPage(Page page) {
        Result<TbItemCustom> result = null;
@@ -59,7 +61,7 @@ public class ItemServiceImpl implements ItemService {
            result.setTotal(total);
            //3 对rows进行设值(指定页码显示记录集合)
            List<TbItemCustom> list = itemCustomDao.listItemByPage(page);
-           System.out.println(list.get(0).getCid());
+           //System.out.println(list.get(0).getCid());
            result.setRows(list);
        }catch (Exception e) {
            logger.error(e.getMessage(), e);
@@ -67,17 +69,63 @@ public class ItemServiceImpl implements ItemService {
        }
        return result;
    }
-
-   /* @Override
-    public List<TbItem> listItem() {
-        List<TbItem> list = null;
+   //删除
+    @Override
+    public int updateBatch(List<Long> ids) {
+        int i = 0;
         try {
-            list = itemDao.selectByExample(null);
-        }catch (Exception e) {
+            //准备商品对象，这个对象包含了状态为3的字段
+            TbItem record = new TbItem();
+            record.setStatus((byte) 3);
+            //创建更新模板 update tb_item set status=? where id in (?,?,?)
+            TbItemExample example = new TbItemExample();
+            TbItemExample.Criteria criteria = example.createCriteria();
+            criteria.andIdIn(ids);
+            //执行更新
+            i = itemDao.updateByExampleSelective(record, example);
+            //System.out.println("======"+i);
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
         }
-        return list;
-    }*/
+        return i;
+    }
+    //上架
+    @Override
+    public int updateBatchUp(List<Long> ids) {
+       int i=0;
+       try {
+           TbItem record=new TbItem();
+           record.setStatus((byte)1);
+           TbItemExample example=new TbItemExample();
+           TbItemExample.Criteria criteria=example.createCriteria();
+           criteria.andIdIn(ids);
+           i=itemDao.updateByExampleSelective(record,example);
+           System.out.println("上架"+i);
+       }catch (Exception e){
+           logger.error(e.getMessage(),e);
+           e.printStackTrace();
+       }
+        return i;
+    }
+    //下架
+    @Override
+    public int updateBatchDown(List<Long> ids) {
+       int i=0;
+       try {
+           TbItem record=new TbItem();
+           record.setStatus((byte)2);
+           TbItemExample example=new TbItemExample();
+           TbItemExample.Criteria criteria=example.createCriteria();
+           criteria.andIdIn(ids);
+           i=itemDao.updateByExampleSelective(record,example);
+           System.out.println("下架"+i);
+       }catch (Exception e){
+           logger.error(e.getMessage(),e);
+           e.printStackTrace();
+       }
+        return i;
+    }
+
 
 }

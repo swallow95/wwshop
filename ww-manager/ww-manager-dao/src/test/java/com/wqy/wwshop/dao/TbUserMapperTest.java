@@ -11,12 +11,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/spring-dao-test.xml"})
 public class TbUserMapperTest {
-    @Autowired
+   @Autowired
     private TbUserMapper userDao;
     @Test
     public void testSelectByPrimaryKey() throws Exception {
         TbUser tbUser=userDao.selectByPrimaryKey(5L);
-     /*   System.out.println(tbUser);*/
+        System.out.println(tbUser);
 
     }
 
