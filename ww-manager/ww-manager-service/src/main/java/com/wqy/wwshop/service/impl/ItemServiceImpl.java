@@ -1,5 +1,6 @@
 package com.wqy.wwshop.service.impl;
 
+import com.wqy.wwshop.common.dto.Order;
 import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.dao.TbItemCustomMapper;
@@ -13,7 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class ItemServiceImpl implements ItemService {
 
@@ -51,17 +55,23 @@ public class ItemServiceImpl implements ItemService {
     }*/
    //分页
    @Override
-   public Result<TbItemCustom> listItemsByPage(Page page) {
+   public Result<TbItemCustom> listItemsByPage(Page page, Order order) {
        Result<TbItemCustom> result = null;
        try {
+           Map<String,Object> map=new HashMap<>();
+           map.put("page",page);
+           map.put("order",order);
+           System.out.println("===="+order.getSort());
+           System.out.println(order);
            //1 创建一个响应参数实体类
            result = new Result<TbItemCustom>();
            //2 对total进行设值(符合条件的总记录数)
            int total = itemCustomDao.countItems();
            result.setTotal(total);
            //3 对rows进行设值(指定页码显示记录集合)
-           List<TbItemCustom> list = itemCustomDao.listItemByPage(page);
+           List<TbItemCustom> list = itemCustomDao.listItemByPage(map);
            //System.out.println(list.get(0).getCid());
+
            result.setRows(list);
        }catch (Exception e) {
            logger.error(e.getMessage(), e);

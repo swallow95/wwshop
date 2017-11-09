@@ -86,9 +86,6 @@
                //至少选择了一个
                $.messager.confirm("确认","你确认要上架吗？",function (r) {
                    if (r){
-
-
-
                        //异步请求
                        $.post(
                            'items/upItems',
@@ -146,6 +143,8 @@
     }]
 
     $("#dg").datagrid({
+        //定义是否允许多列排序
+        multiSort:true,
         toolbar:toolbar,
         url:'items',
         //隔行变色，斑马线效果
@@ -164,8 +163,8 @@
         columns: [[
             //field title width列属性
             {field: 'ck', checkbox: true},
-            {field: 'id', title: '商品编号', width: 100},
-            {field: 'title', title: '商品名称', width: 100},
+            {field: 'id', title: '商品编号', width: 100,sortable:true},
+            {field: 'title', title: '商品名称', width: 100,sortable:true},
             {field: 'sellPoint', title: '卖点', width: 100},
             {field:'status',title:'状态',width:100,formatter:function(value,row,index){
                 /*console.group();//组
