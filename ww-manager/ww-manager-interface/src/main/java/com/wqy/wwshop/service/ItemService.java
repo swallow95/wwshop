@@ -5,6 +5,7 @@ import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.pojo.po.TbItem;
 import com.wqy.wwshop.pojo.vo.TbItemCustom;
+import com.wqy.wwshop.pojo.vo.TbItemQuery;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface ItemService {
 
    // List<TbItem> listItem();
     //分页
-   Result<TbItemCustom> listItemsByPage(Page page, Order order);
+   Result<TbItemCustom> listItemsByPage(Page page, Order order, TbItemQuery tbItemQuery);
 
 
     //删除

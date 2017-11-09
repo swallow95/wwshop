@@ -5,6 +5,7 @@ import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.pojo.po.TbItem;
 import com.wqy.wwshop.pojo.vo.TbItemCustom;
+import com.wqy.wwshop.pojo.vo.TbItemQuery;
 import com.wqy.wwshop.service.ItemService;
 
 import org.slf4j.Logger;
@@ -49,10 +50,10 @@ public class ItemAction {
     }*/
    @ResponseBody
    @RequestMapping("/items")
-   public Result<TbItemCustom> listItemsByPage(Page page, Order order) {
+   public Result<TbItemCustom> listItemsByPage(Page page, Order order, TbItemQuery tbItemQuery) {
        Result<TbItemCustom> list = null;
        try {
-           list = itemService.listItemsByPage(page,order);
+           list = itemService.listItemsByPage(page,order,tbItemQuery);
        } catch (Exception e) {
            logger.error(e.getMessage(), e);
            e.printStackTrace();

@@ -8,6 +8,7 @@ import com.wqy.wwshop.dao.TbItemMapper;
 import com.wqy.wwshop.pojo.po.TbItem;
 import com.wqy.wwshop.pojo.po.TbItemExample;
 import com.wqy.wwshop.pojo.vo.TbItemCustom;
+import com.wqy.wwshop.pojo.vo.TbItemQuery;
 import com.wqy.wwshop.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,23 +56,28 @@ public class ItemServiceImpl implements ItemService {
     }*/
    //分页
    @Override
-   public Result<TbItemCustom> listItemsByPage(Page page, Order order) {
+   public Result<TbItemCustom> listItemsByPage(Page page, Order order, TbItemQuery tbItemQuery) {
        Result<TbItemCustom> result = null;
        try {
            Map<String,Object> map=new HashMap<>();
            map.put("page",page);
            map.put("order",order);
-           System.out.println("===="+order.getSort());
-           System.out.println(order);
+           map.put("tbItemQuery",tbItemQuery);
+          // System.out.println("===="+order.getSort());
+          // System.out.println("模糊标题="+tbItemQuery.getTitle());
+         //  System.out.println("模糊状态="+tbItemQuery.getStatus());
+
            //1 创建一个响应参数实体类
            result = new Result<TbItemCustom>();
            //2 对total进行设值(符合条件的总记录数)
-           int total = itemCustomDao.countItems();
+           int total = itemCustomDao.countItems(map);
            result.setTotal(total);
+          // System.out.println("总数"+total);
            //3 对rows进行设值(指定页码显示记录集合)
            List<TbItemCustom> list = itemCustomDao.listItemByPage(map);
-           //System.out.println(list.get(0).getCid());
-
+           System.out.println(list.get(0));
+          // System.out.println("每页的大小"+page.getRows());
+          // System.out.println("每页的位偏移"+page.getOffset());
            result.setRows(list);
        }catch (Exception e) {
            logger.error(e.getMessage(), e);
