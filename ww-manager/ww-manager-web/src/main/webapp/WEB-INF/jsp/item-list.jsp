@@ -96,7 +96,8 @@
     }
    /* 增加*/
     function add() {
-        console.log("add");
+        //console.log("add");
+        wwshop.addTabs('新增商品','item-add');
     }
    /* 编辑*/
     function edit(){
