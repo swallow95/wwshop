@@ -100,6 +100,23 @@ public class ItemAction {
         }
         return i;
     }
+    //添加
+    @ResponseBody
+    @RequestMapping("/item")
+    public int saveItem(TbItem tbItem,String content){
+        System.out.println("商品"+tbItem);
+        System.out.println("描述"+content);
+        int i=0;
+        try {
+            i=itemService.saveItem(tbItem,content);
+            System.out.println(i);
+
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
+    }
 
 
 }

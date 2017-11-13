@@ -1,11 +1,15 @@
 package com.wqy.wwshop.service.impl;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.wqy.wwshop.common.dto.Order;
 import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.common.dto.Result;
+import com.wqy.wwshop.common.util.IDUtils;
 import com.wqy.wwshop.dao.TbItemCustomMapper;
+import com.wqy.wwshop.dao.TbItemDescMapper;
 import com.wqy.wwshop.dao.TbItemMapper;
 import com.wqy.wwshop.pojo.po.TbItem;
+import com.wqy.wwshop.pojo.po.TbItemDesc;
 import com.wqy.wwshop.pojo.po.TbItemExample;
 import com.wqy.wwshop.pojo.vo.TbItemCustom;
 import com.wqy.wwshop.pojo.vo.TbItemQuery;
@@ -14,7 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +33,9 @@ public class ItemServiceImpl implements ItemService {
     private TbItemMapper itemDao;
     @Autowired
     private TbItemCustomMapper itemCustomDao;
+    //引入tb_item_desc
+    @Autowired
+    private TbItemDescMapper tbItemDescDao;
 
 
     @Override
@@ -136,6 +145,41 @@ public class ItemServiceImpl implements ItemService {
            criteria.andIdIn(ids);
            i=itemDao.updateByExampleSelective(record,example);
            System.out.println("下架"+i);
+       }catch (Exception e){
+           logger.error(e.getMessage(),e);
+           e.printStackTrace();
+       }
+        return i;
+    }
+
+    //加上注解@Transactional之后，这个方法就变成了事务方法
+    //并不是事务方法越多越好，查询方法不需要添加为事务方法
+    @Transactional
+    @Override
+    public int saveItem(TbItem tbItem, String content) {
+       int i=0;
+       try{
+           //这个方法中需要处理两张表格tb_item tb_item_desc
+           //调用工具类生成商品的ID
+           //处理tb_item
+           Long itemId= IDUtils.getItemId();
+           System.out.println("id===="+itemId);
+           tbItem.setId(itemId);
+           tbItem.setStatus((byte)2);
+           tbItem.setCreated(new Date());
+           tbItem.setUpdated(new Date());
+           //保存商品
+           i = itemDao.insert(tbItem);
+           System.out.println("===="+i);
+           //处理tb_item_desc
+           TbItemDesc tbItemDesc=new TbItemDesc();
+           tbItemDesc.setItemId(itemId);
+           tbItemDesc.setCreated(new Date());
+           tbItemDesc.setUpdated(new Date());
+          // System.out.println(1/0);  这里不能写try catch  出了异常还自行处理   不符合
+           //保存描述  i+是为了到页面判断是否添加成功
+           i+= tbItemDescDao.insert(tbItemDesc);
+           //System.out.println("iiiii===="+i);
        }catch (Exception e){
            logger.error(e.getMessage(),e);
            e.printStackTrace();

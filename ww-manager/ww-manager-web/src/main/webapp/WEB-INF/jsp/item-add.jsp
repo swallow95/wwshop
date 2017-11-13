@@ -74,8 +74,81 @@
     </form>
 </div>
 <script>
+    //提交表单
+    function submitForm(){
+        $('#itemAddForm').form('submit',{
+            //提交表单到item进行处理
+            url: 'item',
+            //在表单提交之前触发
+            onSubmit:function () {
+                //将表单上价格单位从元转为分
+                $('#price').val($('#priceView').val()*100);
+                //做表单校验，表单上所有字段全部校验通过才能返回true，才会提交表单，
+                //如果有任意一个字段没有校验通过，返回false，不会提交表单
+                return $(this).form('validate');
+            },
+            //后台处理成功之后的回调函数
+            success:function(data){
+                if(data > 0) {
+                    $.messager.alert('温馨提示','恭喜！添加商品成功！');
+                    wwshop.addTabs('查询商品', 'item-list');
+                    wwshop.closeTabs('新增商品');
+                }else{
+                    $.messager.alert('警告','添加失败！！');
+                    wwshop.addTabs('新增商品','item-add');
+                }
+
+            }
+        });
+    }
+/*    //提交表单
+   function submitForm() {
+       $('#itemAddForm').from('submit',{
+           //提交表单到item进行处理
+           url:'item',
+           //在表单提交之前触发
+           onSubmit:function () {
+               alert("this"+this);
+               //将表单上价格单位从元转为分
+               $('#price').val($('#priceView').val()*100);
+               //做表单验证。表单上全部校验通过了才能返回true 才会提交表单
+               //如果有任意一个字段效验没有通过，返回false、不会提交表单
+               return $(this).form('validate');
+           },
+           //后台处理成功后回调的函数
+           success:function(data){
+               alert(data);
+               console.log('chenggong');
+               if (data>0){
+                   $.messager.alert("提示","添加商品成功");
+                   wwshop.addTabs('查看商品','item-list');
+               }
+           }
+       });
+   }*/
+    //实例化富文本编辑器
+    var ue=UE.getEditor('container');
+    //加载商品类目的树形下拉框
     $('#cid').combotree({
-        url:'itemCats?parentId=0',
-        required:true
-    })
+        url: 'itemCats?parentId=0',
+        required: true,
+        onBeforeExpand: function (node) {
+            //获取当前被点击的tree
+            var $currentTree = $('#cid').combotree('tree');
+            //调用easyui tree组件的options方法
+            var option = $currentTree.tree('options');
+            //修改option的url属性
+            option.url = 'itemCats?parentId=' + node.id;
+        },
+        onBeforeSelect: function (node) {
+            //判断选中节点是否为叶子节点，如果是，返回true
+            var isLeaf = $('#cid').tree('isLeaf', node.target);
+            //如果后台管理员选中的不是叶子节点的话，给出警告框
+            if (!isLeaf) {
+                $.messager.alert('警告', '请选中最终的类别！', 'warning');
+                return false;
+            }
+
+        }
+    });
 </script>

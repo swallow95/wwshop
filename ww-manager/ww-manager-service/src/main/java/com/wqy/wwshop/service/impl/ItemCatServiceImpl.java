@@ -19,31 +19,29 @@ public class ItemCatServiceImpl implements ItemCatService{
     private TbItemCatMapper itemCatDao;
     @Override
     public List<TreeNode> listItemCatsByPid(Long parentId) {
-        List<TreeNode> treeNodeList=null;
+        List<TreeNode> treeNodeList = null;
         try {
-            //创建查询模版
-            TbItemCatExample example=new TbItemCatExample();
-            TbItemCatExample.Criteria criteria=example.createCriteria();
+            //创建查询模板
+            TbItemCatExample example = new TbItemCatExample();
+            TbItemCatExample.Criteria criteria = example.createCriteria();
             criteria.andParentIdEqualTo(parentId);
             //执行查询
             List<TbItemCat> itemCatList = itemCatDao.selectByExample(example);
-            //要序列化成json列表对象
-            treeNodeList=new ArrayList<>();
+            //要序列化成JSON的列表对象
+            treeNodeList = new ArrayList<TreeNode>();
             //遍历原有列表生成新列表
             for (int i=0;i<itemCatList.size();i++){
                 TbItemCat itemCat = itemCatList.get(i);
-                TreeNode treeNode=new TreeNode();
+                TreeNode treeNode = new TreeNode();
                 treeNode.setId(itemCat.getId());//id就是上一级目录
                 treeNode.setText(itemCat.getName());//内容
-                treeNode.setStatus(itemCat.getIsParent()?"close":"open");
+                treeNode.setState(itemCat.getIsParent()? "closed":"open");
+
                 treeNodeList.add(treeNode);
-
             }
-
         }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
             e.printStackTrace();
-
         }
         return treeNodeList;
     }

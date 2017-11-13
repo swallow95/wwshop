@@ -19,18 +19,17 @@ public class ItemCatAction {
 
     @Autowired
     private ItemCatService itemCatService;
-    @RequestMapping("/itemCats")
     @ResponseBody
-    public List<TreeNode> listItemCatsByPid(@RequestParam("parentId") Long parentId) {
-        List<TreeNode> list=null;
+    @RequestMapping("/itemCats")
+    public List<TreeNode> listItemCatsByPid(@RequestParam("parentId") Long parentId ){
+        List<TreeNode> treeNodeList = null;
         try {
-           list= itemCatService.listItemCatsByPid(parentId);
-           System.out.print(list);
+            treeNodeList = itemCatService.listItemCatsByPid(parentId);
         }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
             e.printStackTrace();
         }
-              return  list;
+        return treeNodeList;
     }
 }
 

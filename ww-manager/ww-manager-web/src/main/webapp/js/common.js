@@ -27,7 +27,12 @@ var wwshop = {
                 closable:true
             });
         }
+    },
+    //关闭选项卡
+    closeTabs:function (text) {
+       $('#tab').tabs('close',text);
     }
+
 };
 
 

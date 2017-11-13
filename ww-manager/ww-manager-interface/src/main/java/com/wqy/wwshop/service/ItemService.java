@@ -24,4 +24,6 @@ public interface ItemService {
     int updateBatchUp(List<Long> ids);
     //下架
     int updateBatchDown(List<Long> ids);
+    //添加
+    int saveItem(TbItem tbItem, String content);
 }
