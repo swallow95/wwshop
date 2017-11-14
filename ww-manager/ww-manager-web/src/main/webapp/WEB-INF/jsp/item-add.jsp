@@ -74,6 +74,11 @@
     </form>
 </div>
 <script>
+    //重置
+    function clearForm(){
+        $('#itemAddForm').form('reset');
+        ue.setContent('商品描述');
+    }
     //提交表单
     function submitForm(){
         $('#itemAddForm').form('submit',{
@@ -87,7 +92,7 @@
                 //如果有任意一个字段没有校验通过，返回false，不会提交表单
                 return $(this).form('validate');
             },
-            //后台处理成功之后的回调函数
+            //在表单提交成功以后触发
             success:function(data){
                 if(data > 0) {
                     $.messager.alert('温馨提示','恭喜！添加商品成功！');
@@ -101,31 +106,8 @@
             }
         });
     }
-/*    //提交表单
-   function submitForm() {
-       $('#itemAddForm').from('submit',{
-           //提交表单到item进行处理
-           url:'item',
-           //在表单提交之前触发
-           onSubmit:function () {
-               alert("this"+this);
-               //将表单上价格单位从元转为分
-               $('#price').val($('#priceView').val()*100);
-               //做表单验证。表单上全部校验通过了才能返回true 才会提交表单
-               //如果有任意一个字段效验没有通过，返回false、不会提交表单
-               return $(this).form('validate');
-           },
-           //后台处理成功后回调的函数
-           success:function(data){
-               alert(data);
-               console.log('chenggong');
-               if (data>0){
-                   $.messager.alert("提示","添加商品成功");
-                   wwshop.addTabs('查看商品','item-list');
-               }
-           }
-       });
-   }*/
+    //初始化之前删除原有的容器
+    UE.delEditor('container');
     //实例化富文本编辑器
     var ue=UE.getEditor('container');
     //加载商品类目的树形下拉框
