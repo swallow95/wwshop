@@ -11,6 +11,7 @@
         <module>../ww-common</module>
         <module>../ww-manager</module>
         <module>../ww-upload</module>
+        <module>../ww-portal-web</module>
     </modules>
     <!--打包方式  默认是jar-->
     <packaging>pom</packaging>
