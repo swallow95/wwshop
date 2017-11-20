@@ -12,9 +12,11 @@
         <module name="ww-manager-pojo" />
         <module name="ww-manager-service" />
         <module name="ww-manager-web" />
+        <module name="ww-upload" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="dd-upload" target="1.7" />
       <module name="ww-common" target="1.8" />
       <module name="ww-manager" target="1.8" />
       <module name="ww-manager-dao" target="1.8" />
@@ -23,6 +25,7 @@
       <module name="ww-manager-service" target="1.8" />
       <module name="ww-manager-web" target="1.8" />
       <module name="ww-parent" target="1.8" />
+      <module name="ww-upload" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

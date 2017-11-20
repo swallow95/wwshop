@@ -1,19 +1,18 @@
 package com.wqy.wwshop.web;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-import com.sun.org.apache.xpath.internal.SourceTree;
+
 import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.pojo.po.TbItemParam;
 import com.wqy.wwshop.pojo.vo.TbItemParamCustom;
 import com.wqy.wwshop.service.ItemParamService;
-import org.apache.activemq.usage.StoreUsage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -53,6 +52,19 @@ public class ItemParamAction {
             e.printStackTrace();
         }
         return i;
+    }
+    //查询
+    @ResponseBody
+    @RequestMapping(value = "/itemParam/query/{cid}",method = RequestMethod.GET)
+    public TbItemParam getItemParamByCid(@PathVariable("cid") Long cid){
+        TbItemParam tbItemParam=null;
+        try {
+            tbItemParam=itemParamService.getItemParamByCid(cid);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return tbItemParam;
     }
 
 }

@@ -103,12 +103,13 @@ public class ItemAction {
     //添加
     @ResponseBody
     @RequestMapping("/item")
-    public int saveItem(TbItem tbItem,String content){
+    public int saveItem(TbItem tbItem,String content,String paramData){
         System.out.println("商品"+tbItem);
         System.out.println("描述"+content);
+        System.out.println(paramData);
         int i=0;
         try {
-            i=itemService.saveItem(tbItem,content);
+            i=itemService.saveItem(tbItem,content,paramData);
             System.out.println(i);
 
         }catch (Exception e){

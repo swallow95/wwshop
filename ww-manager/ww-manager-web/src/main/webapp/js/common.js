@@ -29,8 +29,8 @@ var wwshop = {
         }
     },
     //关闭选项卡
-    closeTabs:function (text) {
-       $('#tab').tabs('close',text);
+    closeTabs:function (title) {
+       $('#tab').tabs('close',title);
     }
 
 };

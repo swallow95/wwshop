@@ -11,4 +11,6 @@ public interface ItemParamService {
     Result<TbItemParamCustom> listItemParamsPage(Page page);
 
     int paramSave(TbItemParam tbItemParam, Long itemId);
+
+    TbItemParam getItemParamByCid(Long cid);
 }

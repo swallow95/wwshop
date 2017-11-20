@@ -6,6 +6,7 @@ import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.dao.TbItemParamCustomMapper;
 import com.wqy.wwshop.dao.TbItemParamMapper;
 import com.wqy.wwshop.pojo.po.TbItemParam;
+import com.wqy.wwshop.pojo.po.TbItemParamExample;
 import com.wqy.wwshop.pojo.vo.TbItemParamCustom;
 import com.wqy.wwshop.service.ItemParamService;
 import org.slf4j.Logger;
@@ -64,5 +65,25 @@ public class ItemParamServiceImpl implements ItemParamService{
             e.printStackTrace();
         }
         return i;
+    }
+
+    @Override
+    public TbItemParam getItemParamByCid(Long cid) {
+        TbItemParam tbItemParam=null;
+        try {
+            //创建查询模版
+            TbItemParamExample example=new TbItemParamExample();
+            TbItemParamExample.Criteria criteria=example.createCriteria();
+            criteria.andItemCatIdEqualTo(cid);
+            //执行
+            List<TbItemParam> list = tbItemParamDao.selectByExampleWithBLOBs(example);
+            if (list!=null&&list.size()>0){
+               tbItemParam= list.get(0);
+            }
+
+        }catch (Exception e){
+
+        }
+        return tbItemParam;
     }
 }

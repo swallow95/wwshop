@@ -25,5 +25,5 @@ public interface ItemService {
     //下架
     int updateBatchDown(List<Long> ids);
     //添加
-    int saveItem(TbItem tbItem, String content);
+    int saveItem(TbItem tbItem, String content,String paramData);
 }

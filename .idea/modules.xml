@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/ww-manager/ww-manager-service/ww-manager-service.iml" filepath="$PROJECT_DIR$/ww-manager/ww-manager-service/ww-manager-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/ww-manager/ww-manager-web/ww-manager-web.iml" filepath="$PROJECT_DIR$/ww-manager/ww-manager-web/ww-manager-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/ww-parent/ww-parent.iml" filepath="$PROJECT_DIR$/ww-parent/ww-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ww-upload/ww-upload.iml" filepath="$PROJECT_DIR$/ww-upload/ww-upload.iml" />
     </modules>
   </component>
 </project>

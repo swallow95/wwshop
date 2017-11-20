@@ -5,12 +5,8 @@ import com.wqy.wwshop.common.dto.Order;
 import com.wqy.wwshop.common.dto.Page;
 import com.wqy.wwshop.common.dto.Result;
 import com.wqy.wwshop.common.util.IDUtils;
-import com.wqy.wwshop.dao.TbItemCustomMapper;
-import com.wqy.wwshop.dao.TbItemDescMapper;
-import com.wqy.wwshop.dao.TbItemMapper;
-import com.wqy.wwshop.pojo.po.TbItem;
-import com.wqy.wwshop.pojo.po.TbItemDesc;
-import com.wqy.wwshop.pojo.po.TbItemExample;
+import com.wqy.wwshop.dao.*;
+import com.wqy.wwshop.pojo.po.*;
 import com.wqy.wwshop.pojo.vo.TbItemCustom;
 import com.wqy.wwshop.pojo.vo.TbItemQuery;
 import com.wqy.wwshop.service.ItemService;
@@ -36,6 +32,8 @@ public class ItemServiceImpl implements ItemService {
     //引入tb_item_desc
     @Autowired
     private TbItemDescMapper tbItemDescDao;
+    @Autowired
+    private TbItemParamItemMapper tbItemParamItemDao;
 
 
     @Override
@@ -156,10 +154,10 @@ public class ItemServiceImpl implements ItemService {
     //并不是事务方法越多越好，查询方法不需要添加为事务方法
     @Transactional
     @Override
-    public int saveItem(TbItem tbItem, String content) {
+    public int saveItem(TbItem tbItem, String content,String paramData) {
        int i=0;
        try{
-           //这个方法中需要处理两张表格tb_item tb_item_desc
+           //这个方法中需要处理两张表格tb_item tb_item_desc tb_item_param_item
            //调用工具类生成商品的ID
            //处理tb_item
            Long itemId= IDUtils.getItemId();
@@ -180,6 +178,13 @@ public class ItemServiceImpl implements ItemService {
            //保存描述  i+是为了到页面判断是否添加成功
            i+= tbItemDescDao.insert(tbItemDesc);
            //System.out.println("iiiii===="+i);
+           TbItemParamItem tbItemParam=new TbItemParamItem();
+        tbItemParam.setItemId(itemId);
+          tbItemParam.setCreated(new Date());
+          tbItemParam.setUpdated(new Date());
+          tbItemParam.setParamData(paramData);
+         i+= tbItemParamItemDao.insert(tbItemParam);
+
        }catch (Exception e){
            logger.error(e.getMessage(),e);
            e.printStackTrace();
