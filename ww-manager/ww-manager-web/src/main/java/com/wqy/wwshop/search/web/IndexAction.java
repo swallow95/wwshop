@@ -1,4 +1,4 @@
-package com.wqy.wwshop.web;
+package com.wqy.wwshop.search.web;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;

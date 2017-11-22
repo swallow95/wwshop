@@ -1,4 +1,4 @@
-package com.wqy.wwshop.web;
+package com.wqy.wwshop.search.web;
 
 import com.wqy.wwshop.common.dto.Order;
 import com.wqy.wwshop.common.dto.Page;

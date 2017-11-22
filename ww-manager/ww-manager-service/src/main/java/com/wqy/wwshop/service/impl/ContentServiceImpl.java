@@ -30,7 +30,7 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public List<TbContent> listContentsByCid(Long id) {
         List<TbContent> list=null;
-        //查询缓存 //查询缓存，如果存在直接加载
+        //查询缓存 如果存在直接加载
         try {
             String json = jedisClient.hget("CONTENT_LIST", id + "");
             if (StringUtils.isNoneBlank(json)){//不为空 或者‘’

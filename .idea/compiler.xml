@@ -7,18 +7,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ww-common" />
+        <module name="ww-lucene" />
         <module name="ww-manager-dao" />
         <module name="ww-manager-interface" />
         <module name="ww-manager-pojo" />
         <module name="ww-manager-service" />
         <module name="ww-manager-web" />
         <module name="ww-portal-web" />
+        <module name="ww-search-web" />
         <module name="ww-upload" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="dd-upload" target="1.7" />
       <module name="ww-common" target="1.8" />
+      <module name="ww-lucene" target="1.8" />
       <module name="ww-manager" target="1.8" />
       <module name="ww-manager-dao" target="1.8" />
       <module name="ww-manager-interface" target="1.8" />
@@ -27,6 +30,7 @@
       <module name="ww-manager-web" target="1.8" />
       <module name="ww-parent" target="1.8" />
       <module name="ww-portal-web" target="1.8" />
+      <module name="ww-search-web" target="1.8" />
       <module name="ww-upload" target="1.8" />
     </bytecodeTargetLevel>
   </component>

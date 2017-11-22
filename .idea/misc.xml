@@ -3,6 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/ww-manager/ww-manager-web" />
     <file type="web" url="file://$PROJECT_DIR$/ww-portal-web" />
+    <file type="web" url="file://$PROJECT_DIR$/ww-search-web" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/ww-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ww-lucene" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ww-manager" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ww-manager/ww-manager-dao" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ww-manager/ww-manager-interface" charset="UTF-8" />
@@ -11,6 +12,7 @@
     <file url="file://$PROJECT_DIR$/ww-manager/ww-manager-web/src/main/webapp/WEB-INF/jsp/index.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ww-parent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ww-portal-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ww-search-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ww-upload" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
